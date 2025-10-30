@@ -1,3 +1,12 @@
+/* —— brand variables (L’Oréal: strong black with warm gold accents) —— */
+:root {
+  --brand-black: #000000;
+  --brand-gold: #b58b2d; /* warm gold */
+  --brand-gold-strong: #a07f26;
+  --brand-gray: #666666;
+  --bg: #faf9f7; /* subtle off-white for an elegant canvas */
+}
+
 /* —— basic reset —— */
 * {
   box-sizing: border-box;
@@ -8,9 +17,10 @@
 /* —— body + fonts —— */
 body {
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
-  color: #333;
+  color: var(--brand-black);
   display: flex;
   justify-content: center;
+  background: var(--bg);
 }
 
 .page-wrapper {
@@ -21,43 +31,112 @@ body {
 /* header */
 .site-header {
   text-align: center;
-  padding-top: 50px;
+  padding-top: 36px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
 }
 
+/* logo */
+.brand-logo {
+  max-height: 56px;
+  width: auto;
+  display: inline-block;
+}
+
+/* use an elegant serif for the title to reflect brand voice */
 .site-title {
-  font-size: 22px;
-  font-weight: 500;
-  margin-bottom: 10px;
+  font-family: "Playfair Display", "Montserrat", serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--brand-black);
+  margin-bottom: 6px;
+  letter-spacing: 0.2px;
 }
 
 /* chat window */
 .chatbox {
-  margin: 40px 0;
+  margin: 32px 0;
 }
 
 .chat-window {
   height: 360px;
-  border: 1px solid #000;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   padding: 20px;
   font-size: 18px;
-  line-height: 1.5;
+  line-height: 1.6;
   overflow-y: auto;
-  background: #fafafa;
+  background: #ffffff;
   white-space: pre-line;
+  border-radius: 6px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
 }
 
-/* messages */
+/* messages — bubble layout for chat-style conversation */
 .msg {
-  margin-bottom: 14px;
-  line-height: 1.5;
+  display: flex;
+  margin-bottom: 12px;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 0 8px;
 }
 
+/* user messages: align to the right */
 .msg.user {
-  color: #000;
+  justify-content: flex-end;
 }
 
+/* assistant messages: align to the left */
 .msg.ai {
-  color: #666666;
+  justify-content: flex-start;
+}
+
+/* common bubble styling */
+.bubble {
+  max-width: 78%;
+  padding: 12px 14px;
+  border-radius: 16px;
+  font-size: 16px;
+  line-height: 1.4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  word-wrap: break-word;
+}
+
+/* user bubble uses brand gold for a distinctive appearance */
+.bubble.user {
+  background: var(--brand-gold);
+  color: var(--brand-black);
+  border-bottom-right-radius: 6px;
+  text-align: right;
+}
+
+/* assistant bubble is neutral/white with subtle border */
+.bubble.ai {
+  background: #ffffff;
+  color: var(--brand-black);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom-left-radius: 6px;
+  text-align: left;
+}
+
+/* inner text and metadata */
+.bubble-text {
+  margin-bottom: 8px;
+  white-space: pre-wrap;
+}
+
+.bubble-meta {
+  font-size: 12px;
+  color: var(--brand-gray);
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* ensure assistant meta aligns left for assistant bubbles */
+.msg.ai .bubble-meta {
+  justify-content: flex-start;
 }
 
 /* input row */
@@ -65,45 +144,51 @@ body {
   display: flex;
   gap: 12px;
   margin-top: 16px;
+  align-items: center;
 }
 
 .chat-form input {
   flex: 1;
   padding: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   font-size: 18px;
+  border-radius: 6px;
+  background: #fff;
 }
 
 .chat-form input:focus {
-  outline: 2px solid #000;
+  outline: 2px solid var(--brand-gold);
   outline-offset: 2px;
 }
 
+/* send button: gold brand accent */
 .chat-form button {
   font-size: 18px;
-  background: #000;
-  color: #fff;
+  background: var(--brand-gold);
+  color: var(--brand-black);
   border: none;
   padding: 12px;
-  width: 48px;
+  width: 56px;
   height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.18s;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .chat-form button .material-icons {
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .chat-form button:hover {
-  background: #666666;
+  background: var(--brand-gold-strong);
 }
 
 .chat-form button:focus {
-  outline: 2px solid #000;
+  outline: 2px solid var(--brand-black);
   outline-offset: 2px;
 }
 
@@ -125,7 +210,7 @@ body {
   margin: 60px 0 40px;
   text-align: center;
   font-size: 14px;
-  color: #666;
+  color: var(--brand-gray);
 }
 
 .site-footer nav {
@@ -134,10 +219,10 @@ body {
 
 .site-footer a {
   margin: 0 8px;
-  color: #000;
+  color: var(--brand-black);
   text-decoration: none;
 }
 
 .site-footer a:hover {
-  color: #666666;
+  color: var(--brand-gray);
 }
